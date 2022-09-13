@@ -11,7 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "@discordjs/builders": "^1.1.0",
-    "axios": "^0.20.0",
+    "@discordjs/rest": "^1.0.1",
+    "axios": "^0.27.2",
     "bloxy": "^5.0.34",
     "discord.js": "^12.5.3",
     "express": "^4.17.1",

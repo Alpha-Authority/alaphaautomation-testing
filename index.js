@@ -31,15 +31,15 @@ const client = new discord.Client({ intents: ["GUILDS", "GUILD_MESSAGES"] });
 //
 
 
-client.login(token);
+//client.login(token);
 
 //
 
-const clientFiles = fs.readdirSync(clientSystem + '/Js').filter(file => file.endsWith('.js' || '.mjs'));
+const clientFiles = fs.readdirSync(clientSystem).filter(file => file.endsWith('.js'));
 
 for (const file of clientFiles) {
-    const clientFile = require(clientSystem + '/Js/' + file)
-    clientFile(client);
+    //const clientFile = require(clientSystem + '/' + file)
+    //clientFile(client);
 }
 
 //const clientFilesMjs = fs.readdirSync(clientSystem + '/Mjs').filter(file => file.endsWith('.mjs'));
