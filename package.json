@@ -15,6 +15,7 @@
     "axios": "^0.27.2",
     "bloxy": "^5.0.34",
     "discord.js": "^12.5.3",
+    "dotenv": "^16.0.2",
     "express": "^4.17.1",
     "firebase-admin": "^10.3.0",
     "noblox.js": "^4.7.3",

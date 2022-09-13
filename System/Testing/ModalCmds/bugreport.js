@@ -1,3 +1,4 @@
+require('dotenv').config()
 import { SlashCommandBuilder } from '@discordjs/builders';
 
 const registerCommand = new SlashCommandBuilder()

@@ -1,3 +1,4 @@
+require('dotenv').config()
 function messages(client) {
     client.on('message', message => {
         if (message.author.bot) return

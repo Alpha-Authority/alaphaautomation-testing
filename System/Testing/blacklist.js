@@ -1,3 +1,4 @@
+require('dotenv').config()
 const axios = require('axios');
 const admin = require("firebase-admin");
 const Discord = require('discord.js')

@@ -1,3 +1,4 @@
+require('dotenv').config()
 var arg = ''
 
 module.exports = {
