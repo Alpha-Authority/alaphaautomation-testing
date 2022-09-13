@@ -1,11 +1,12 @@
+require('dotenv').config()
 const fs = require('fs')
 const Discord = require('discord.js')
 const admin = require('firebase-admin')
 
 //
 
-//var serviceAccount = require('./Modules/Firebase/serviceAccount.json')
-var serviceAccount = {
+var serviceAccount = require('./Modules/Firebase/alapha-c7845-firebase-adminsdk-czfz3-7ff2f06b08.json')
+var serviceAccount2 = {
   type: process.env.SA_TYPE,
   project_id: process.env.SA_PROJECT_ID,
   private_key_id: process.env.SA_PRIVATE_KEY_ID,

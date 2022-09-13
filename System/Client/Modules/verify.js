@@ -1,3 +1,4 @@
+require('dotenv').config()
 const axios = require('axios')
 var discordUser = '';
 var taggedUser = '';

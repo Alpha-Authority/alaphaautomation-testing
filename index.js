@@ -13,6 +13,7 @@
 
 const fs = require('fs');
 const discord = require('discord.js');
+require('dotenv').config()
 
 // // //
 
@@ -31,15 +32,15 @@ const client = new discord.Client({ intents: ["GUILDS", "GUILD_MESSAGES"] });
 //
 
 
-//client.login(token);
+client.login(token);
 
 //
 
 const clientFiles = fs.readdirSync(clientSystem).filter(file => file.endsWith('.js'));
 
 for (const file of clientFiles) {
-    //const clientFile = require(clientSystem + '/' + file)
-    //clientFile(client);
+    const clientFile = require(clientSystem + '/' + file)
+    clientFile(client);
 }
 
 //const clientFilesMjs = fs.readdirSync(clientSystem + '/Mjs').filter(file => file.endsWith('.mjs'));

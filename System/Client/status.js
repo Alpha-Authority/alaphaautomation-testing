@@ -1,3 +1,4 @@
+require('dotenv').config()
 function status(client) {
     const prefix = process.env.PREFIX
     client.on('ready', () => {
