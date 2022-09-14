@@ -13,6 +13,7 @@
 
 const fs = require('fs');
 const discord = require('discord.js');
+require('dotenv').config()
 
 // // //
 
@@ -35,10 +36,10 @@ client.login(token);
 
 //
 
-const clientFiles = fs.readdirSync(clientSystem + '/Js').filter(file => file.endsWith('.js' || '.mjs'));
+const clientFiles = fs.readdirSync(clientSystem).filter(file => file.endsWith('.js'));
 
 for (const file of clientFiles) {
-    const clientFile = require(clientSystem + '/Js/' + file)
+    const clientFile = require(clientSystem + '/' + file)
     clientFile(client);
 }
 
@@ -48,3 +49,5 @@ for (const file of clientFiles) {
 //    const clientFile2 = require(clientSystem + '/Mjs/' + file2)
     //clientFile2(client);
 //}
+
+// node -e "console.log(require('dotenv').config())"
