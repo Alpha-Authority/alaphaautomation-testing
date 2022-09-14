@@ -5,8 +5,9 @@ const admin = require('firebase-admin')
 
 //
 
-const SA_PRIVATE_KEY = process.env.SA_PRIVATE_KEY.replaceAll("\\n", "\n")
+const SA_PRIVATE_KEY = process.env.SA_PRIVATE_KEY.split("\\n").join("\n")
 //console.log(`${SA_PRIVATE_KEY}`)
+
 //var serviceAccount = require('./Modules/Firebase/alapha-c7845-firebase-adminsdk-czfz3-7ff2f06b08.json')
 var serviceAccount = {
   type: process.env.SA_TYPE,
