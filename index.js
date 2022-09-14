@@ -49,3 +49,5 @@ for (const file of clientFiles) {
 //    const clientFile2 = require(clientSystem + '/Mjs/' + file2)
     //clientFile2(client);
 //}
+
+// node -e "console.log(require('dotenv').config())"
