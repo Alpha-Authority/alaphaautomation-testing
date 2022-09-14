@@ -5,12 +5,14 @@ const admin = require('firebase-admin')
 
 //
 
-var serviceAccount = require('./Modules/Firebase/alapha-c7845-firebase-adminsdk-czfz3-7ff2f06b08.json')
-var serviceAccount2 = {
+const SA_PRIVATE_KEY = process.env.SA_PRIVATE_KEY.replaceAll("\\n", "\n")
+//console.log(`${SA_PRIVATE_KEY}`)
+//var serviceAccount = require('./Modules/Firebase/alapha-c7845-firebase-adminsdk-czfz3-7ff2f06b08.json')
+var serviceAccount = {
   type: process.env.SA_TYPE,
   project_id: process.env.SA_PROJECT_ID,
   private_key_id: process.env.SA_PRIVATE_KEY_ID,
-  private_key: process.env.SA_PRIVATE_KEY,
+  private_key: SA_PRIVATE_KEY,
   client_email: process.env.SA_CLIENT_EMAIL,
   client_id: process.env.SA_CLIENT_ID,
   auth_uri: process.env.SA_AUTH_URI,
@@ -27,7 +29,7 @@ const moduleFiles = fs.readdirSync(moduleSystem).filter(file => file.endsWith('.
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: `https://alapha-c7845-default-rtdb.firebaseio.com/`
+  databaseURL: process.env.SA_DATABASEURL
 });
 
 //
