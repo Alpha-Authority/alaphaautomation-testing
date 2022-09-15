@@ -18,7 +18,7 @@
     "dotenv": "^16.0.2",
     "express": "^4.17.1",
     "firebase-admin": "^10.3.0",
-    "noblox.js": "^4.7.3",
+    "noblox.js": "^4.13.1",
     "nvm": "0.0.4",
     "server.js": "^1.0.0"
   }

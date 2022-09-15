@@ -13,6 +13,7 @@
 
 const fs = require('fs');
 const discord = require('discord.js');
+const noblox = require('noblox.js')
 require('dotenv').config()
 
 // // //
@@ -24,6 +25,8 @@ const clientSystem = './System/Client';
 const token = process.env.TOKEN;
 const prefix = process.env.PREFIX;
 
+//const rbxcookie = process.env.TESTING_RBXCOOKIE
+
 //
 
 const client = new discord.Client({ intents: ["GUILDS", "GUILD_MESSAGES"] });
@@ -33,6 +36,17 @@ const client = new discord.Client({ intents: ["GUILDS", "GUILD_MESSAGES"] });
 
 
 client.login(token);
+
+async function startApp () {
+    // You MUST call setCookie() before using any authenticated methods [marked by 🔐]
+    // Replace the parameter in setCookie() with your .ROBLOSECURITY cookie.
+    const currentUser = await noblox.setCookie(process.env.RBXCOOKIE) 
+    console.log(`Logged in as ${currentUser.UserName} [${currentUser.UserID}]`)
+
+    // Do everything else, calling functions and the like.
+}
+
+startApp()
 
 //
 
