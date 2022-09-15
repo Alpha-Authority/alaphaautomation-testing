@@ -25,7 +25,7 @@ const clientSystem = './System/Client';
 const token = process.env.TOKEN;
 const prefix = process.env.PREFIX;
 
-//const rbxcookie = process.env.TESTING_RBXCOOKIE
+const rbxcookie = process.env.RBXCOOKIE
 
 //
 
@@ -40,7 +40,7 @@ client.login(token);
 async function startApp () {
     // You MUST call setCookie() before using any authenticated methods [marked by 🔐]
     // Replace the parameter in setCookie() with your .ROBLOSECURITY cookie.
-    const currentUser = await noblox.setCookie(process.env.RBXCOOKIE) 
+    const currentUser = await noblox.setCookie(`${rbxcookie}`) 
     console.log(`Logged in as ${currentUser.UserName} [${currentUser.UserID}]`)
 
     // Do everything else, calling functions and the like.
