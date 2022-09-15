@@ -7,16 +7,17 @@ const Discord = require('discord.js')
 module.exports = {
     name: 'addxp',
     description: 'Adds XP.',
-    execute(message, args, client, admin){
+    guildOnly: false,
+    execute(message, args, noblox, client, admin){
         var db = admin.database();
 
         // Auxiliary Opensource Test
         if (message.channel.type === "dm") return message.channel.send(`That command can't be used through direct messages!`)
         
-    	if (message.author.id == "170639211182030850"){
+    	if (message.author.id == "170639211182030850" || message.author.id == "463516784578789376"){
             isAuthorized()
         }else{
-    		return message.channel.send(`Sorry ${message.author}, but only the owner can run that command!`).then(message => message.delete({timeout: 5000, reason: "delete"}));
+    		return message.channel.send(`Sorry ${message.author}, but only the owners can run that command!`).then(message => message.delete({timeout: 5000, reason: "delete"}));
     	}
         
         function isAuthorized(){
@@ -188,4 +189,3 @@ module.exports = {
         }
     }
 }
-    

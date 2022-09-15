@@ -22,10 +22,10 @@ const clientSystem = './System/Client';
 
 // // //
 
-const token = process.env.TOKEN;
+const token = process.env.TESTING_TOKEN;
 const prefix = process.env.PREFIX;
 
-const rbxcookie = process.env.RBXCOOKIE
+const rbxcookie = process.env.TESTING_RBXCOOKIE
 
 //
 
@@ -54,7 +54,7 @@ const clientFiles = fs.readdirSync(clientSystem).filter(file => file.endsWith('.
 
 for (const file of clientFiles) {
     const clientFile = require(clientSystem + '/' + file)
-    clientFile(client);
+    clientFile(client, noblox);
 }
 
 //const clientFilesMjs = fs.readdirSync(clientSystem + '/Mjs').filter(file => file.endsWith('.mjs'));

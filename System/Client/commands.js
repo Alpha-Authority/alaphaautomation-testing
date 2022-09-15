@@ -23,10 +23,11 @@ var serviceAccount = {
 }
 
 const moduleSystem = './System/Client/Modules'
-
+const moduleNobloxSystem = './System/Client/Noblox_Modules'
 //
 
 const moduleFiles = fs.readdirSync(moduleSystem).filter(file => file.endsWith('.js'));
+const moduleNobloxFiles = fs.readdirSync(moduleNobloxSystem).filter(file => file.endsWith('.js'));
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
@@ -36,39 +37,70 @@ admin.initializeApp({
 //
 
 
-function commands(client) {
+function commands(client, noblox) {
     client.commands = new Discord.Collection()
     for (const file of moduleFiles) {
 	    const commandFile = require('./Modules/' + file);
-	    client.commands.set(commandFile.name, commandFile)
+	    client.commands.set(`normal.${commandFile.name}`, commandFile)
+    }
+    for (const file of moduleNobloxFiles) {
+	    const commandFile = require('./Noblox_Modules/' + file);
+	    client.commands.set(`roblox.${commandFile.name}`, commandFile)
     }
     client.on('message', message => {
         if (message.author.bot || !message.content.startsWith(process.env.PREFIX)) return
         const args = message.content.slice(process.env.PREFIX.length).split(' ');
         const commandName = args.shift().toLowerCase()
-        const command = client.commands.get(commandName)
-		|| client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
-        if (!command) return;
-        if (command.guildOnly && message.channel.type === 'dm') {
-    	    return message.reply('I can\'t execute that command inside DMs!');
-        } // SEE LINE 55 (message.channel.type.dm)
-    
-    
-        if (command.args && !args.length) {
-            let reply = `You didn't provide any arguments, ${message.author}!`;
-    
-            if (command.usage) {
-    			reply += `\nThe proper usage would be: \`${prefix}${command.name} ${command.usage}\``;
-    		}
-    
-    		return message.channel.send(reply);
-    	}
-    
-        try {
-            command.execute(message, args, client, admin);
-        } catch {
-            message.reply('Unavailable command!');
-            console.log('Failed!');
+        const command = client.commands.get(`normal.${commandName}`)
+		|| client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(`normal,.${commandName}`));
+        const noblox_command = client.commands.get(`roblox.${commandName}`)
+		|| client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(`roblox.${commandName}`));
+        if (command){ 
+            if (command.guildOnly && message.channel.type === 'dm'){ // || noblox_command.guildOnly && message.channel.type.type === 'dm') {
+                return message.reply('I can\'t execute that command inside DMs!');
+            } // SEE LINE 55 (message.channel.type.dm)
+        
+        
+            if (command.args && !args.length) {
+                let reply = `You didn't provide any arguments, ${message.author}!`;
+                if (command.usage) {
+                    reply += `\nThe proper usage would be: \`${prefix}${command.name} ${command.usage}\``;
+                }
+                
+                return message.channel.send(reply);
+            }
+        
+            try {
+                if (command) {
+                    command.execute(message, args, client, admin);
+                }
+            } catch {
+                message.reply('Unavailable command!');
+                console.log('Failed!');
+            }
+        } else if (noblox_command){
+            if (noblox_command.guildOnly && message.channel.type.type === 'dm') {
+                return message.reply('I can\'t execute that command inside DMs!');
+            } // SEE LINE 55 (message.channel.type.dm)
+        
+        
+            if (noblox_command.args && !args.length) {
+                let reply = `You didn't provide any arguments, ${message.author}!`;
+                if (noblox_command.usage){
+                    reply += `\nThe proper usage would be: \`${prefix}${noblox_command.name} ${noblox_command.usage}\``;
+                }
+                
+                return message.channel.send(reply);
+            }
+        
+            try {
+                if (noblox_command) {
+                    noblox_command.execute(message, args, noblox, client, admin)
+                }
+            } catch {
+                message.reply('Unavailable command!');
+                console.log('Failed!');
+            }
         }
     });
 }

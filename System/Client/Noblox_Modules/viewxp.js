@@ -5,7 +5,8 @@ const Discord = require("discord.js");
 module.exports = {
     name: 'viewxp',
     description: 'Views XP.',
-    execute(message, args, client, admin) {
+    guildOnly: false,
+    execute(message, args, noblox, client, admin) {
         function progressBar(percentAge) {
             var percentBar;
         
@@ -86,26 +87,26 @@ module.exports = {
                 return message.channel.send(`Sorry ${message.author}, but you do not seem to be verified in the rover database so that I can fetch your account. Please by saying \`\`/verify\`\``)
             } else {
                 var usernameParam = {
-                "usernames": [
-                    roblox
-                ],
-                "excludeBannedUsers": true
-            }
+                    "usernames": [
+                        roblox
+                    ],
+                    "excludeBannedUsers": true
+                }
                  axios.post(`https://users.roblox.com/v1/usernames/users`, usernameParam)
-                .then(function (response){
-                    console.log(response.data)
-                    if (response.data.length == 0){
-                        var badEmbed = new Discord.MessageEmbed()
-                            .setColor(0xf54242)
-                            .setDescription(`User **${rblx_username}** doesn't exist!`)
-                        console.log(badEmbed)
-                        return message.channel.send(badEmbed);
-                    }else{
-                        rblx_username = response.data.data[0].name;
-                        rblx_id = response.data.data[0].id;
-                        doRoblox(rblx_username, rblx_id)
-                    }
-                })
+                    .then(function (response){
+                        console.log(response.data)
+                        if (response.data.data.length == 0){
+                            var badEmbed = new Discord.MessageEmbed()
+                                .setColor(0xf54242)
+                                .setDescription(`User **${rblx_username}** doesn't exist!`)
+                            console.log(badEmbed)
+                            return message.channel.send(badEmbed);
+                        }else{
+                            rblx_username = response.data.data[0].name;
+                            rblx_id = response.data.data[0].id;
+                            doRoblox(rblx_username, rblx_id)
+                        }
+                    })
             }
         }
         function doRoblox(username, userid) {
@@ -129,14 +130,15 @@ module.exports = {
                     // new total points added together
             function xpit(value, current_xp){
                 if (value === false){return message.channel.send(`User has no profile!`)}
-                axios.get(`https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${userid}&size=180x180&format=Png`)
-                    .then(function (response) {
+                noblox.getRankNameInGroup(790907, userid)
+                //axios.get(`https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${userid}&size=180x180&format=Png`)
+                    .then(function (rankid) {
                         var infoEmbed = new Discord.MessageEmbed()
                             .setColor(0xff8c00)
                             .setTitle(`${username}'s Profile`)
                             .setURL(`https://www.roblox.com/users/${userid}/profile`)
-                            .setDescription(`Username: ${username}\n XP: ${current_xp}`)
-                            .setThumbnail(response.data.imageUrl);
+                            .setDescription(`Username: ${username}\nXP: ${current_xp}\nRank: ${rankid}`)
+                            //.setThumbnail(response.data.imageUrl);
 
                         // return embed
                         return message.channel.send( {embed: infoEmbed } )
