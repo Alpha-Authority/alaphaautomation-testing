@@ -112,7 +112,7 @@ module.exports = {
                     .catch(error => console.log(error));
             }
         }
-        function doRoblox(username, userid) {
+        function doRoblox(rblx_username, rblx_id) {
            // const sentMessage = await message.channe.send(`Fetching data...`)
 
             var current_xp = 0;
@@ -135,20 +135,45 @@ module.exports = {
                     // new total points added together
             function xpit(value, current_xp){
                 if (value === false){return message.channel.send(`User has no profile!`)}
-                noblox.getRankNameInGroup(790907, userid)
-                //axios.get(`https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${userid}&size=180x180&format=Png`)
-                    .then(function (rankid) {
-                        var infoEmbed = new Discord.MessageEmbed()
-                            .setColor(0xff8c00)
-                            .setTitle(`${username}'s Profile`)
-                            .setURL(`https://www.roblox.com/users/${userid}/profile`)
-                            .setDescription(`Username: ${username}\nXP: ${current_xp}\nRank: ${rankid}`)
-                            //.setThumbnail(response.data.imageUrl);
+                    axios.get(`https://thumbnails.roblox.com/v1/users/avatar?userIds=${rblx_id}&size=720x720&format=Png&isCircular=false`)
+                        .then(function (response){
+                            console.log(response.data)
+                            if (response.data.data.length == 0){
+                                //const thumbnail = response.data.data[0].imageUrl
+                                noblox.getRankNameInGroup(790907, rblx_id)
+                                //axios.get(`https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${userid}&size=180x180&format=Png`)
+                                    .then(function (rankid) {
+                                        var infoEmbed = new Discord.MessageEmbed()
+                                            .setColor(0xff8c00)
+                                            .setTitle(`${rblx_username}'s Profile`)
+                                            .setURL(`https://www.roblox.com/users/${rblx_id}/profile`)
+                                            .setDescription(`Username: ${rblx_username}\nXP: ${current_xp}\nRank: ${rankid}`)
+                                            //.setThumbnail(response);
 
-                        // return embed
-                        return message.channel.send( {embed: infoEmbed } )
-                    })
-                    .catch(error => console.log(error));
+                                        // return embed
+                                        return message.channel.send( {embed: infoEmbed } )
+                                    })
+                                    .catch(error => console.log(error));
+                            }else{
+                                const thumbnail = response.data.data[0].imageUrl
+                                noblox.getRankNameInGroup(790907, rblx_id)
+                                    //axios.get(`https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${userid}&size=180x180&format=Png`)
+                                    .then(function (rankid) {
+                                        var infoEmbed = new Discord.MessageEmbed()
+                                            .setColor(0xff8c00)
+                                            .setTitle(`${rblx_username}'s Profile`)
+                                            .setURL(`https://www.roblox.com/users/${rblx_id}/profile`)
+                                            .setDescription(`Username: ${rblx_username}\nXP: ${current_xp}\nRank: ${rankid}`)
+                                            .setThumbnail(thumbnail);
+
+                                        // return embed
+                                        return message.channel.send( {embed: infoEmbed } )
+                                    })
+                                    .catch(error => console.log(error));
+                            }
+                        })
+                        .catch(error => console.log(error));
+    
             }
         }
 

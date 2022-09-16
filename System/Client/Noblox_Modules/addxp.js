@@ -42,14 +42,15 @@ module.exports = {
     
     	// collect usernames into an array
         const arrayFinder  = function (a) {
-            if (a.indexOf(' ') != -1) {
+            if (!a.indexOf(' ') != -1) {
                 return a.split(' ')
 
             }else{
                 return a
             }
         };
-        let userArray = arrayFinder(message.content.slice(10 + args[0].length))
+        
+        let userArray = arrayFinder(message.content.slice(process.env.PREFIX.length + 7 + args[0].length))
     	
     	// remove duplicates
     	//userArray = Array.from(new Set(userArray));
@@ -84,6 +85,7 @@ module.exports = {
             //sleep(1000).then(() => {
     // Do something after the sleep!
     		// username & id & boolean to get out
+            console.log
         	var rblx_username = userArray[i];
             //var rblx_username = args[1]
             var rblx_id;
@@ -91,6 +93,7 @@ module.exports = {
             //var blacklisted = false;
     
                 // grab id if possible
+            console.log(rblx_username)
             var usernameParam = {
                 "usernames": [
                     rblx_username
@@ -98,10 +101,10 @@ module.exports = {
                 "excludeBannedUsers": true
             }
             axios.post(`https://users.roblox.com/v1/usernames/users`, usernameParam)
-                .then(function (response){
+                .then(function (usernameresponse){
                     // wow user doesn't exist
-                    console.log(response.data)
-                    if (response.data.length == 0){
+                    console.log(usernameresponse.data)
+                    if (usernameresponse.data.data.length == 0){
                         //flag = true;
                         var badEmbed = new Discord.MessageEmbed()
                             .setColor(0xf54242)
@@ -110,8 +113,8 @@ module.exports = {
                         return message.channel.send(badEmbed);
                     }else{
                         // user does exist
-                        rblx_username = response.data.data[0].name;
-                        rblx_id = response.data.data[0].id;
+                        rblx_username = usernameresponse.data.data[0].name;
+                        rblx_id = usernameresponse.data.data[0].id;
                         
     
     
@@ -138,26 +141,93 @@ module.exports = {
                                 db.ref(`points/users/${rblx_id}`).set({
                                   xp: Number(new_total_points)
                                 });
+                                getThumbnail(true, rblx_username, rblx_id)
                                 // embed message to channel
-                                var doneEmbed = new Discord.MessageEmbed()
-                                    .setColor(0xFF8C00)
-                                    .setDescription(`Created ${rblx_username}'s profile`)
-                                message.channel.send(doneEmbed)
+                               
+                                //var doneEmbed = new Discord.MessageEmbed()
+                                //    .setColor(0xFF8C00) 
+                                //    .setDescription(`Created ${rblx_username}'s profile`)
+                                //message.channel.send(doneEmbed)
                     
                             }else{
                                 db.ref(`points/users/${rblx_id}`).set({
                                   xp: Number(new_total_points)
                                 });
+                                getThumbnail(false, rblx_username, rblx_id)
                                 // embed message to channel
-                                var doneEmbed = new Discord.MessageEmbed()
-                                    .setColor(0x28F6FF)
-                                    .setDescription(`Updated ${rblx_username}'s profile`)
-                                message.channel.send(doneEmbed)
+                                //var doneEmbed = new Discord.MessageEmbed()
+                                //    .setColor(0x28F6FF)
+                                //    .setDescription(`Updated ${rblx_username}'s profile`)
+                                //message.channel.send(doneEmbed)
                                 
                             }    
                         }
+                        function getThumbnail(flag, rblx_username, rblx_id){
+                            axios.get(`https://thumbnails.roblox.com/v1/users/avatar?userIds=${rblx_id}&size=720x720&format=Png&isCircular=false`)
+                                .then(function (response){
+                                    console.log(response.data)
+                                    if (response.data.data.length == 0){
+                                        //finalEmbed(flag, rankresponse, rblx_username, rblx_id, false, false)
+                                        //const thumbnail = response.data.data[0].imageUrl
+                                        noblox.getRankNameInGroup(args[0], rblx_id)
+                                        //axios.get(`https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${userid}&size=180x180&format=Png`)
+                                            .then(function (rankname) {
+                                                finalEmbed(flag, rblx_username, rblx_id, thumbnail, false)
+
+                                            })
+                                            .catch(error => console.log(error));
+                                    }else{
+                                        const thumbnail = response.data.data[0].imageUrl
+                                        //inalEmbed(flag, rankresponse, rblx_username, rblx_id, thumbnail, true)
+                                        noblox.getRankNameInGroup(args[0], rblx_id)
+                                            //axios.get(`https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${userid}&size=180x180&format=Png`)
+                                            .then(function (rankname) {
+                                                finalEmbed(flag, rblx_username, rblx_id, thumbnail, true)
+                                            })
+                                            .catch(error => console.log(error));
+                                    }
+                                })
+                                .catch(error => console.log(error));
+                        }
+                        function finalEmbed(flag, rblx_username, rblx_id, thumbnail, trueThumbnail) {
+                            if (!flag && !trueThumbnail){
+                                var infoEmbed = new Discord.MessageEmbed()
+                                    .setTitle(`${rblx_username}'s Profile`)
+                                    .setURL(`https://www.roblox.com/users/${rblx_id}/profile`)
+                                    .setColor(0x28F6FF)
+                                    .setDescription(`Updated ${rblx_username}'s profile`)
+
+                                    //.setThumbnail(response);
+                                message.channel.send( {embed: infoEmbed } )
+                            } else if (!flag && trueThumbnail){
+                                var infoEmbed = new Discord.MessageEmbed()
+                                    .setTitle(`${rblx_username}'s Profile`)
+                                    .setURL(`https://www.roblox.com/users/${rblx_id}/profile`)
+                                    .setColor(0x28F6FF)
+                                    .setDescription(`Updated ${rblx_username}'s profile`)
+                                    .setThumbnail(thumbnail);
+                                message.channel.send( {embed: infoEmbed } )
+                            } else if (flag && !trueThumbnail){
+                                var infoEmbed = new Discord.MessageEmbed()
+                                    .setColor(0xFF8C00)
+                                    .setDescription(`Created ${rblx_username}'s profile`)
+                                    
+                                 //.setThumbnail(response);
+                                message.channel.send( {embed: infoEmbed } )
+                            } else if (flag && trueThumbnail){
+                                var infoEmbed = new Discord.MessageEmbed()
+                                    .setColor(0xFF8C00)
+                                    .setDescription(`Created ${rblx_username}'s profile`)
+                                    .setThumbnail(thumbnail);
+                                    
+
+                                // return embed
+                                message.channel.send( {embed: infoEmbed })
+                            }
+                        }
                     
                     })
+                    
                     // error message
                     console.log(flag)
                     //if (flag){
