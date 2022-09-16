@@ -69,7 +69,7 @@ module.exports = {
             axios.post(`https://users.roblox.com/v1/usernames/users`, usernameParam)
                 .then(function (response){
                     console.log(response.data)
-                    if (response.data.length == 0){
+                    if (response.data.data.length == 0){
                         var badEmbed = new Discord.MessageEmbed()
                             .setColor(0xf54242)
                             .setDescription(`User **${rblx_username}** doesn't exist!`)
