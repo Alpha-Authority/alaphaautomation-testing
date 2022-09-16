@@ -7,7 +7,7 @@ function status(client) {
         //client.user.setActivity('\"' + prefix + '\"', {type: "LISTENING"}); 
         const activities = [
 			`${client.guilds.cache.size} servers!`,
-			`${client.guilds.cache.reduce((a, b) => a + b.memberCount, 0)} users!`
+			`${client.guilds.cache.reduce((a, b) => a + b.memberCount, 0)} members!`
 		];
 
 		let i = 0;
