@@ -57,12 +57,12 @@ module.exports = {
                 });
         } else {
             
-            var rblx_username = args[0]
-            var rblx_id;
+            var rblx_id = args[0]
+            //var rblx_id;
 
             var usernameParam = {
                 "usernames": [
-                    rblx_username
+                    rblx_id
                 ],
                 "excludeBannedUsers": true
             }
@@ -87,12 +87,12 @@ module.exports = {
                 return message.channel.send(`Sorry ${message.author}, but you do not seem to be verified in the rover database so that I can fetch your account. Please by saying \`\`/verify\`\``)
             } else {
                 var usernameParam = {
-                    "usernames": [
-                        roblox
+                    "userIds": [
+                      roblox
                     ],
-                    "excludeBannedUsers": true
-                }
-                 axios.post(`https://users.roblox.com/v1/usernames/users`, usernameParam)
+                    "excludeBannedUsers": false
+                  }
+                 axios.post(`https://users.roblox.com/v1/users`, usernameParam)
                     .then(function (response){
                         console.log(response.data)
                         if (response.data.data.length == 0){
