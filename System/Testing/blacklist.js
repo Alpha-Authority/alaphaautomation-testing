@@ -30,7 +30,7 @@ module.exports = {
                             var workinEmbed = new Discord.MessageEmbed()
                         		.setDescription(`Working on the blacklist...`);
                             message.channel.send(workinEmbed).then(message => message.delete({ timeout: 1000, reason: "delete working message" }));
-                            axios.get(`https://alapha-c7845-default-rtdb.firebaseio.com/blacklist/groups/${args[1]}.json`)
+                            axios.get(`${process.env.SA_DATABASEURL}blacklist/groups/${args[1]}.json`)
                                 .then(function (response) {
                                     console.log(response.data)
                                     if (!response.data){

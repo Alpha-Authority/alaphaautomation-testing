@@ -125,7 +125,7 @@ module.exports = {
                             console.log(rblx_username)
         
         
-                            //axios.get(`https://alapha-c7845-default-rtdb.firebaseio.com/points/users/${rblx_id}.json`)
+                            //axios.get(`${process.env.SA_DATABASEURL}points/users/${rblx_id}.json`)
                             noblox.setRank(args[0], rblx_id, Number(rankid))
                                 .then(function (rankresponse) {
                                     console.log(rankresponse)
@@ -171,7 +171,7 @@ module.exports = {
                 //	continue;
                 //};
                 //checks if a user is blacklisted. Cannot give blacklisted individuals experience now.
-                //axios.get(`https://alapha-c7845-default-rtdb.firebaseio.com/guilds/${message.guild.id}/blacklist/${rblx_id}.json`)
+                //axios.get(`${process.env.SA_DATABASEURL}guilds/${message.guild.id}/blacklist/${rblx_id}.json`)
                 //	.then(function (response) {
                 //		if (response.data != null){
                 //			blacklisted = true

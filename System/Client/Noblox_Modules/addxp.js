@@ -115,7 +115,7 @@ module.exports = {
                         
     
     
-                        axios.get(`https://alapha-c7845-default-rtdb.firebaseio.com/points/users/${rblx_id}.json`)
+                        axios.get(`${process.env.SA_DATABASEURL}/points/users/${rblx_id}.json`)
                             .then(function (response) {
                                 var current_points;
                                 console.log(response.data)
@@ -169,7 +169,7 @@ module.exports = {
                     //	continue;
                     //};
                     //checks if a user is blacklisted. Cannot give blacklisted individuals experience now.
-                    //axios.get(`https://alapha-c7845-default-rtdb.firebaseio.com/guilds/${message.guild.id}/blacklist/${rblx_id}.json`)
+                    //axios.get(`${process.env.SA_DATABASEURL}guilds/${message.guild.id}/blacklist/${rblx_id}.json`)
                     //	.then(function (response) {
                     //		if (response.data != null){
                     //			blacklisted = true
