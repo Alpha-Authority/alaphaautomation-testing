@@ -2,7 +2,7 @@ require('dotenv').config()
 const { ActivityType } = require('discord.js'); // Discord.js V14
 function status(client) {
     const prefix = process.env.PREFIX
-    client.on('ready', () => {
+    client.once('ready', () => {
         console.log("I'm in");
         console.log(client.user.username);
         //client.user.setActivity('\"' + prefix + '\"', {type: "LISTENING"}); 
