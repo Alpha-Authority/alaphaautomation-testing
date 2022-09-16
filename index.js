@@ -12,7 +12,8 @@
 // // //
 
 const fs = require('fs');
-const discord = require('discord.js');
+//const discord = require('discord.js');
+const { Client, GatewayIntentBits } = require('discord.js');
 const noblox = require('noblox.js')
 require('dotenv').config()
 
@@ -29,9 +30,16 @@ const rbxcookie = process.env.RBXCOOKIE
 
 //
 
-const client = new discord.Client({ intents: ["GUILDS", "GUILD_MESSAGES"] });
 
-
+//const client = new discord.Client({ intents: ["GUILDS", "GUILD_MESSAGES"] });
+const client = new Client({
+	intents: [
+		GatewayIntentBits.Guilds,
+		GatewayIntentBits.GuildMessages,
+		GatewayIntentBits.MessageContent,
+		GatewayIntentBits.GuildMembers,
+	],
+});
 //
 
 
