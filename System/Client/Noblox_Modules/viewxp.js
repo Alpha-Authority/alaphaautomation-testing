@@ -54,7 +54,8 @@ module.exports = {
                    } else {
                        getRobloxUsername(false)
                    }
-                });
+                })
+                .catch(error => console.log(error));
         } else {
             
             var rblx_id = args[0]
@@ -72,7 +73,7 @@ module.exports = {
                     if (response.data.data.length == 0){
                         var badEmbed = new Discord.MessageEmbed()
                             .setColor(0xf54242)
-                            .setDescription(`User **${rblx_username}** doesn't exist!`)
+                            .setDescription(`User **${args[0]}** doesn't exist!`)
                         console.log(badEmbed)
                         return message.channel.send(badEmbed);
                     }else{
@@ -81,6 +82,7 @@ module.exports = {
                         doRoblox(rblx_username, rblx_id)
                     }
                 })
+                .catch(error => console.log(error));
         }
         function getRobloxUsername(value, roblox) {
             if (!value) {
@@ -107,6 +109,7 @@ module.exports = {
                             doRoblox(rblx_username, rblx_id)
                         }
                     })
+                    .catch(error => console.log(error));
             }
         }
         function doRoblox(username, userid) {
@@ -127,6 +130,8 @@ module.exports = {
                         xpit(true, current_xp);
                     }
                 })
+                .catch(error => console.log(error));
+
                     // new total points added together
             function xpit(value, current_xp){
                 if (value === false){return message.channel.send(`User has no profile!`)}
@@ -142,7 +147,8 @@ module.exports = {
 
                         // return embed
                         return message.channel.send( {embed: infoEmbed } )
-                });
+                    })
+                    .catch(error => console.log(error));
             }
         }
 

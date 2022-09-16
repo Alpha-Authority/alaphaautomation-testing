@@ -69,7 +69,7 @@ module.exports = {
     	var workinEmbed = new Discord.MessageEmbed()
     		.setDescription(`Working on updating user(s)...`)
     
-    	message.channel.send(workinEmbed).then(message => message.delete({ timeout: userArray.length * 1000 + 1000, reason: "delete working message" }));
+    	message.channel.send(workinEmbed).then(message => message.delete({ timeout: userArray.length * 1000 + 1000, reason: "delete working message" })).catch(error => console.log(error));;
     
     
     	// all roles
