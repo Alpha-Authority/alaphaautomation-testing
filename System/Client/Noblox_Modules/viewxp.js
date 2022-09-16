@@ -98,7 +98,7 @@ module.exports = {
                         if (response.data.data.length == 0){
                             var badEmbed = new Discord.MessageEmbed()
                                 .setColor(0xf54242)
-                                .setDescription(`User **${rblx_username}** doesn't exist!`)
+                                .setDescription(`User **${roblox}** doesn't exist!`)
                             console.log(badEmbed)
                             return message.channel.send(badEmbed);
                         }else{
