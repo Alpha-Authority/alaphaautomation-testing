@@ -152,7 +152,7 @@ module.exports = {
                                 // embed message to channel
                                 var doneEmbed = new Discord.MessageEmbed()
                                     .setColor(0x28F6FF)
-                                    .setDescription(`Updated ${rblx_username}'s rank! New rank: ${response.data.name}`)
+                                    .setDescription(`Updated ${rblx_username}'s rank! New rank: ${rankresponse.name}`)
                                 message.channel.send(doneEmbed)
                                 
                             }    
