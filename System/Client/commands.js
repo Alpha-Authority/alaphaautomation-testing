@@ -188,7 +188,7 @@ function commands(client, noblox, token, cl) {
         if (!command) return;
     
         try {
-            await command.execute(interaction);
+            await command.execute(interaction, noblox);
         } catch (error) {
             console.error(error);
             await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
