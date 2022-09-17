@@ -152,7 +152,7 @@ module.exports = {
             var rank_name;
             var roleset_id;
 
-            axios.get(`${process.env.SA_DATABASEURL}points/users/${rblx_id}.json`)
+            axios.get(`${process.env.SA_DATABASEURL}points/groups/Alpha Authority/users/${rblx_id}.json`)
                 .then(function (response) {
                     var current_xp;
                     console.log(response.data)
