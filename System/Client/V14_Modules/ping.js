@@ -14,7 +14,7 @@ module.exports = {
                 color: 0x0099ff,
                 "footer": {
                     "text": interaction.guild.name,
-                    "icon_url":  interaction.guild.iconURL({ format: "png", dynamic: true })
+                    "icon_url": interaction.guild.iconURL({ format: "png", dynamic: true })
                 },
                 "description": 'Pong! Response time: ' + ((time - interaction.createdTimestamp) / 1000) + ' seconds!',
                 timestamp: new Date()
