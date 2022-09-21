@@ -2,6 +2,8 @@ require('dotenv').config()
 const axios = require("axios");
 const { SlashCommandBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder } = require('discord.js');
 
+var gvwhitelist_var = []
+
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('profilev2')
