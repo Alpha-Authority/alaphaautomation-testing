@@ -1,7 +1,7 @@
 require('dotenv').config()
 const axios = require("axios");
 const { SlashCommandBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder } = require('discord.js');
-
+const test = require(`./V14_Noblox_Modules_Modules/ReplyCreator`)
 var gvwhitelist_var = []
 
 module.exports = {
@@ -230,7 +230,7 @@ module.exports = {
                                 noblox.getRankNameInGroup(790907, rblx_id)
                                     //axios.get(`https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${userid}&size=180x180&format=Png`)
                                     .then(function (rankid) {
-                                        const embed = new EmbedBuilder()
+                                        const newembed = new EmbedBuilder()
                                               .setColor(16747520)
                                               .setTitle(`${rblx_username}'s Profile`)
                                               .setURL(`https://www.roblox.com/users/${rblx_id}/profile`)
@@ -265,7 +265,61 @@ module.exports = {
                                         //    .setThumbnail(thumbnail);
 
                                         // return embedinteraction.guild.iconURL({ format: "png", dynamic: true }
-                                        return interaction.reply( {embeds: [embed] } )
+                                        const beep = test([
+                                                {Type: 'embed', Data: newembed},
+                                                {Type: 'actionrowbuilder', Data: [
+                                                    {
+                                                        type: 2, 
+                                                        components: [
+                                                            {
+                                                                type: 1, 
+                                                                label: 'yes', 
+                                                                style: 1, 
+                                                                custom_id: '5'
+                                                            }
+                                                        ]
+                                                    }
+                                                ]}
+                                        ])
+                                        //console.log(test([
+                                        //    {Type: 'embed', Data: newembed},
+                                        //    {Type: 'actionrowbuilder', Data: [
+                                        //        {
+                                        //            type: 2, 
+                                        //            components: [
+                                        //                {
+                                        //                    type: 1, 
+                                        //                    label: 'yes', 
+                                        //                    style: 1, 
+                                        //                    custom_id: 'yes'
+                                        //                }
+                                        //            ]
+                                        //        }
+                                        //    ]}
+                                        //]))
+                                        console.log(beep)
+                                        for (let ai = 0; ai < 5; ai++){ 
+                                            setTimeout(function timer() {
+                                                const thisString = []
+                                                if (ai == 1) {
+                                                    //for (thisValue in beep) {
+                                                    //    if (thisValue[0]) {
+                                                    //        thisString.push(thisValue[0])
+                                                    //
+                                                    //    }
+                                                    //    if (thisValue[1]){
+                                                    //        thisString.push(thisValue[1])
+                                                    //    }
+                                                    //    console.log(thisValue)
+                                                    //}
+                                                }
+                                                if (ai == 4) {
+                                                    console.log(beep[[1]])
+                                                    return interaction.reply( {embeds: [beep.embed], components: [beep.components]} )
+                                                }
+                                            }, 2000)
+                                        }
+                                        //return interaction.reply( {embeds: [beep[0].embed], components: [beep[1].components]} )
                                     })
                                     .catch(error => console.log(error));
                             }

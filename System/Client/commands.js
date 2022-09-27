@@ -45,6 +45,8 @@ admin.initializeApp({
 
 //
 
+const test = require(`./V14_Noblox_Modules/V14_Noblox_Modules_Modules/ReplyCreator`)
+//console.log(test([{Type: 'embed', Data: 'yes'},{Type: 'actionrowbuilder', Data: [{type: 2, components: [{type: 1, label: 'yes', style: 1, custom_id: '5'}]}]}]))
 
 function commands(client, noblox, token, cl) {
     //client.commands = new Discord.Collection() -- Discord.js V12
