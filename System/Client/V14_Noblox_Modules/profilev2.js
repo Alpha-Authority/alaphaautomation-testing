@@ -240,8 +240,12 @@ module.exports = {
                                         //.setThumbnail(response);
 
                                     // return embed
-                                    return interaction.reply( { embeds: [embed] } )
-                                    createButtonBuilder(embed)
+                                    return interaction.reply( { embeds: [newembed] } )
+                                        .then(function () {
+                                            createButtonBuilder(newembed)
+                                        })
+                                    //interaction.deferReply()
+                                    //createButtonBuilder(embed)
                                 })
                                 .catch(error => console.log(error));
                         }else{
@@ -340,7 +344,11 @@ module.exports = {
                                     //}
                                     //return interaction.reply( {embeds: [beep[0].embed], components: [beep[1].components]} )
                                     return interaction.reply( { embeds: [newembed] } )
-                                    createButtonBuilder(newembed)
+                                        .then(function () {
+                                            createButtonBuilder(newembed)
+                                        })
+
+
                                 })
                                 .catch(error => console.log(error));
 
@@ -348,6 +356,16 @@ module.exports = {
                     })
                     .catch(error => console.log(error));
     
+            }
+            function createButtonBuilder(interactionembed) {
+                // Will need to add Moderation History to negate the Profile Buttons
+                const normal_profile_actionrowbuilder = new ActionRowBuilder()
+                    .addComponents(
+                        profile_to_groups_button,
+                        profile_to_achievements_button,
+                        profile_to_moderation_button,
+                    )
+                 interaction.editReply({ embeds: [interactionembed], components: [normal_profile_actionrowbuilder]})
             }
 
     }
