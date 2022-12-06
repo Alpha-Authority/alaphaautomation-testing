@@ -1,29 +1,26 @@
-const profile_to_groups_button = new ButtonBuilder()
-    .setCustomId('profile_to_groups')
-    .setLabel('Groups')
-    .setStyle(ButtonStyle.Secondary)
-const profile_to_achievements_button = new ButtonBuilder()
-    .setCustomId('profile_to_achievements')
-    .setLabel('Achievements')
-    .setStyle(ButtonStyle.Secondary)
-const profile_to_moderation_button = new ButtonBuilder()
-    .setCustomId('profile_to_moderation')
-    .setLabel('Moderations')
-    .setStyle(ButtonStyle.Secondary)
-
-const back_to_profile_button = new ActionRowBuilder()
-    .setCustomId('back_to_profile')
-    .setLabel('Back')
-    .setStyle(ButtonStyle.Primary)
-
-
-
-const profilebuttons_profile_groups = new ActionRowBuilder
 require('dotenv').config()
 const axios = require("axios");
 const { SlashCommandBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder } = require('discord.js');
 //const test = require(`./V14_Noblox_Modules_Modules/ReplyCreator`)
-var gvwhitelist_var = []
+
+const profile_to_groups_button = new ButtonBuilder()
+.setCustomId('profile_to_groups')
+.setLabel('Groups')
+.setStyle(ButtonStyle.Secondary)
+const profile_to_achievements_button = new ButtonBuilder()
+.setCustomId('profile_to_achievements')
+.setLabel('Achievements')
+.setStyle(ButtonStyle.Secondary)
+const profile_to_moderation_button = new ButtonBuilder()
+.setCustomId('profile_to_moderation')
+.setLabel('Moderations')
+.setStyle(ButtonStyle.Secondary)
+
+const back_to_profile_button = new ButtonBuilder()
+.setCustomId('back_to_profile')
+.setLabel('Back')
+.setStyle(ButtonStyle.Primary)
+
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -200,162 +197,158 @@ module.exports = {
                     }
                 })
                 .catch(error => console.log(error));
-
+        }
                     // new total points added together
-            function xpit(value, current_xp){
-                if (value === false){return interaction.reply(`User has no profile!`)}
-                    axios.get(`https://thumbnails.roblox.com/v1/users/avatar?userIds=${rblx_id}&size=720x720&format=Png&isCircular=false`)
-                        .then(function (response){
-                            console.log(response.data)
-                            if (response.data.data.length == 0){
-                                //const thumbnail = response.data.data[0].imageUrl
-                                noblox.getRankNameInGroup(790907, rblx_id)
+        function xpit(value, current_xp){
+            if (value === false){return interaction.reply(`User has no profile!`)}
+                axios.get(`https://thumbnails.roblox.com/v1/users/avatar?userIds=${rblx_id}&size=720x720&format=Png&isCircular=false`)
+                    .then(function (response){
+                        console.log(response.data)
+                        if (response.data.data.length == 0){
+                            //const thumbnail = response.data.data[0].imageUrl
+                            noblox.getRankNameInGroup(790907, rblx_id)
+                            //axios.get(`https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${userid}&size=180x180&format=Png`)
+                                .then(function (rankid) {
+                                    const embed = new EmbedBuilder()
+                                        .setColor(16747520)
+                                        .setTitle(`${rblx_username}'s Profile`)
+                                        .setURL(`https://www.roblox.com/users/${rblx_id}/profile`)
+                                        .setAuthor({ name: interaction.client.user.username, iconURL: interaction.client.user.displayAvatarURL({ format: "png", dynamic: true }) })
+                                        .setDescription(`Username: ${rblx_username}\nXP: ${current_xp}\nRank: ${rankid}`)
+                                        .setTimestamp()
+                                        .setFooter({ text: interaction.guild.name, iconURL: interaction.guild.iconURL({ format: "png", dynamic: true })})
+                                    //var infoEmbed = {
+                                    //    "title": `${rblx_username}'s Profile`,
+                                    //    "description": `Username: ${rblx_username}\nXP: ${current_xp}\nRank: ${rankid}`,
+                                    //    "url": `https://www.roblox.com/users/${rblx_id}/profile`,
+                                    //    "color": 16747520,
+                                    //    "author": {
+                                    //      "name": interaction.client.user.username,
+                                    //      "icon_url": interaction.client.user.displayAvatarURL({ format: "png", dynamic: true })
+                                    //    },
+                                    //    "footer": {
+                                    //      "text": interaction.guild.name,
+                                    //      "icon_url": interaction.guild.iconURL({ format: "png", dynamic: true })
+                                    //    },
+                                    //    "timestamp": new Date(),
+                                    //  }
+                                    //var infoEmbed = new Discord.MessageEmbed()
+                                    //    .setColor(0xff8c00)
+                                    //    .setTitle(`${rblx_username}'s Profile`)
+                                    //    .setURL(`https://www.roblox.com/users/${rblx_id}/profile`)
+                                    //    .setDescription(`Username: ${rblx_username}\nXP: ${current_xp}\nRank: ${rankid}`)
+                                        //.setThumbnail(response);
+
+                                    // return embed
+                                    return interaction.reply( { embeds: [embed] } )
+                                    createButtonBuilder(embed)
+                                })
+                                .catch(error => console.log(error));
+                        }else{
+                            const thumbnail = response.data.data[0].imageUrl
+                            noblox.getRankNameInGroup(790907, rblx_id)
                                 //axios.get(`https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${userid}&size=180x180&format=Png`)
-                                    .then(function (rankid) {
-                                        const embed = new EmbedBuilder()
+                                .then(function (rankid) {
+                                    const newembed = new EmbedBuilder()
                                             .setColor(16747520)
                                             .setTitle(`${rblx_username}'s Profile`)
                                             .setURL(`https://www.roblox.com/users/${rblx_id}/profile`)
                                             .setAuthor({ name: interaction.client.user.username, iconURL: interaction.client.user.displayAvatarURL({ format: "png", dynamic: true }) })
                                             .setDescription(`Username: ${rblx_username}\nXP: ${current_xp}\nRank: ${rankid}`)
+                                            .setThumbnail(thumbnail)
                                             .setTimestamp()
                                             .setFooter({ text: interaction.guild.name, iconURL: interaction.guild.iconURL({ format: "png", dynamic: true })})
-                                        //var infoEmbed = {
-                                        //    "title": `${rblx_username}'s Profile`,
-                                        //    "description": `Username: ${rblx_username}\nXP: ${current_xp}\nRank: ${rankid}`,
-                                        //    "url": `https://www.roblox.com/users/${rblx_id}/profile`,
-                                        //    "color": 16747520,
-                                        //    "author": {
-                                        //      "name": interaction.client.user.username,
-                                        //      "icon_url": interaction.client.user.displayAvatarURL({ format: "png", dynamic: true })
-                                        //    },
-                                        //    "footer": {
-                                        //      "text": interaction.guild.name,
-                                        //      "icon_url": interaction.guild.iconURL({ format: "png", dynamic: true })
-                                        //    },
-                                        //    "timestamp": new Date(),
-                                        //  }
-                                        //var infoEmbed = new Discord.MessageEmbed()
-                                        //    .setColor(0xff8c00)
-                                        //    .setTitle(`${rblx_username}'s Profile`)
-                                        //    .setURL(`https://www.roblox.com/users/${rblx_id}/profile`)
-                                        //    .setDescription(`Username: ${rblx_username}\nXP: ${current_xp}\nRank: ${rankid}`)
-                                            //.setThumbnail(response);
+                                    //var infoEmbed = {
+                                    //    "title": `${rblx_username}'s Profile`,
+                                    //    "description": `Username: ${rblx_username}\nXP: ${current_xp}\nRank: ${rankid}`,
+                                    //    "url": `https://www.roblox.com/users/${rblx_id}/profile`,
+                                    //    "color": 16747520,
+                                    //    "author": {
+                                    //      "name": interaction.client.user.username,
+                                    //      "icon_url": interaction.client.user.displayAvatarURL({ format: "png", dynamic: true })
+                                    //    },
+                                    //    "footer": {
+                                    //      "text": interaction.guild.name,
+                                    //      "icon_url": interaction.guild.iconURL({ format: "png", dynamic: true })
+                                    //    },
+                                    //    "timestamp": new Date(),
+                                    //    "thumbnail": {
+                                    //        "url": thumbnail
+                                    //      }
+                                    //  }
+                                    //var infoEmbed = new Discord.MessageEmbed()
+                                    //    .setColor(0xff8c00)
+                                    //    .setTitle(`${rblx_username}'s Profile`)
+                                    //    .setURL(`https://www.roblox.com/users/${rblx_id}/profile`)
+                                    //    .setDescription(`Username: ${rblx_username}\nXP: ${current_xp}\nRank: ${rankid}`)
+                                    //    .setThumbnail(thumbnail);
 
-                                        // return embed
-                                        return interaction.reply( { embeds: [embed] } )
-                                        createButtonBuilder(embed)
-                                    })
-                                    .catch(error => console.log(error));
-                            }else{
-                                const thumbnail = response.data.data[0].imageUrl
-                                noblox.getRankNameInGroup(790907, rblx_id)
-                                    //axios.get(`https://thumbnails.roblox.com/v1/users/avatar-headshot?userIds=${userid}&size=180x180&format=Png`)
-                                    .then(function (rankid) {
-                                        const newembed = new EmbedBuilder()
-                                              .setColor(16747520)
-                                              .setTitle(`${rblx_username}'s Profile`)
-                                              .setURL(`https://www.roblox.com/users/${rblx_id}/profile`)
-                                              .setAuthor({ name: interaction.client.user.username, iconURL: interaction.client.user.displayAvatarURL({ format: "png", dynamic: true }) })
-                                              .setDescription(`Username: ${rblx_username}\nXP: ${current_xp}\nRank: ${rankid}`)
-                                              .setThumbnail(thumbnail)
-                                              .setTimestamp()
-                                              .setFooter({ text: interaction.guild.name, iconURL: interaction.guild.iconURL({ format: "png", dynamic: true })})
-                                        //var infoEmbed = {
-                                        //    "title": `${rblx_username}'s Profile`,
-                                        //    "description": `Username: ${rblx_username}\nXP: ${current_xp}\nRank: ${rankid}`,
-                                        //    "url": `https://www.roblox.com/users/${rblx_id}/profile`,
-                                        //    "color": 16747520,
-                                        //    "author": {
-                                        //      "name": interaction.client.user.username,
-                                        //      "icon_url": interaction.client.user.displayAvatarURL({ format: "png", dynamic: true })
-                                        //    },
-                                        //    "footer": {
-                                        //      "text": interaction.guild.name,
-                                        //      "icon_url": interaction.guild.iconURL({ format: "png", dynamic: true })
-                                        //    },
-                                        //    "timestamp": new Date(),
-                                        //    "thumbnail": {
-                                        //        "url": thumbnail
-                                        //      }
-                                        //  }
-                                        //var infoEmbed = new Discord.MessageEmbed()
-                                        //    .setColor(0xff8c00)
-                                        //    .setTitle(`${rblx_username}'s Profile`)
-                                        //    .setURL(`https://www.roblox.com/users/${rblx_id}/profile`)
-                                        //    .setDescription(`Username: ${rblx_username}\nXP: ${current_xp}\nRank: ${rankid}`)
-                                        //    .setThumbnail(thumbnail);
+                                    // return embedinteraction.guild.iconURL({ format: "png", dynamic: true }
+                                    //const beep = test([
+                                    //        {Type: 'embed', Data: newembed},
+                                    //        {Type: 'actionrowbuilder', Data: [
+                                    //            {
+                                    //                type: 2, 
+                                    //                components: [
+                                    //                    {
+                                    //                        type: 1, 
+                                    //                        label: 'yes', 
+                                    //                        style: 1, 
+                                    //                        custom_id: '5'
+                                    //                    }
+                                    //                ]
+                                    //            }
+                                    //        ]}
+                                    //])
+                                    //console.log(test([
+                                    //    {Type: 'embed', Data: newembed},
+                                    //    {Type: 'actionrowbuilder', Data: [
+                                    //        {
+                                    //            type: 2, 
+                                    //            components: [
+                                    //                {
+                                    //                    type: 1, 
+                                    //                    label: 'yes', 
+                                    //                    style: 1, 
+                                    //                    custom_id: 'yes'
+                                    //                }
+                                    //            ]
+                                    //        }
+                                    //    ]}
+                                    //]))
+                                    //console.log(beep)
+                                    //for (let ai = 0; ai < 5; ai++){ 
+                                    //    setTimeout(function timer() {
+                                    //        const thisString = []
+                                    //        if (ai == 1) {
+                                                //for (thisValue in beep) {
+                                                //    if (thisValue[0]) {
+                                                //        thisString.push(thisValue[0])
+                                                //
+                                                //    }
+                                                //    if (thisValue[1]){
+                                                //        thisString.push(thisValue[1])
+                                                //    }
+                                                //    console.log(thisValue)
+                                                //}
+                                    //        }
+                                    //        if (ai == 4) {
+                                    //            console.log(beep[[1]])
+                                    //            return interaction.reply( {embeds: [beep.embed], components: [beep.components]} )
+                                    //        }
+                                    //    }, 2000)
+                                    //}
+                                    //return interaction.reply( {embeds: [beep[0].embed], components: [beep[1].components]} )
+                                    return interaction.reply( { embeds: [newembed] } )
+                                    createButtonBuilder(newembed)
+                                })
+                                .catch(error => console.log(error));
 
-                                        // return embedinteraction.guild.iconURL({ format: "png", dynamic: true }
-                                        //const beep = test([
-                                        //        {Type: 'embed', Data: newembed},
-                                        //        {Type: 'actionrowbuilder', Data: [
-                                        //            {
-                                        //                type: 2, 
-                                        //                components: [
-                                        //                    {
-                                        //                        type: 1, 
-                                        //                        label: 'yes', 
-                                        //                        style: 1, 
-                                        //                        custom_id: '5'
-                                        //                    }
-                                        //                ]
-                                        //            }
-                                        //        ]}
-                                        //])
-                                        //console.log(test([
-                                        //    {Type: 'embed', Data: newembed},
-                                        //    {Type: 'actionrowbuilder', Data: [
-                                        //        {
-                                        //            type: 2, 
-                                        //            components: [
-                                        //                {
-                                        //                    type: 1, 
-                                        //                    label: 'yes', 
-                                        //                    style: 1, 
-                                        //                    custom_id: 'yes'
-                                        //                }
-                                        //            ]
-                                        //        }
-                                        //    ]}
-                                        //]))
-                                        //console.log(beep)
-                                        //for (let ai = 0; ai < 5; ai++){ 
-                                        //    setTimeout(function timer() {
-                                        //        const thisString = []
-                                        //        if (ai == 1) {
-                                                    //for (thisValue in beep) {
-                                                    //    if (thisValue[0]) {
-                                                    //        thisString.push(thisValue[0])
-                                                    //
-                                                    //    }
-                                                    //    if (thisValue[1]){
-                                                    //        thisString.push(thisValue[1])
-                                                    //    }
-                                                    //    console.log(thisValue)
-                                                    //}
-                                        //        }
-                                        //        if (ai == 4) {
-                                        //            console.log(beep[[1]])
-                                        //            return interaction.reply( {embeds: [beep.embed], components: [beep.components]} )
-                                        //        }
-                                        //    }, 2000)
-                                        //}
-                                        //return interaction.reply( {embeds: [beep[0].embed], components: [beep[1].components]} )
-                                        return interaction.reply( { embeds: [newembed] } )
-                                        createButtonBuilder(newembed)
-                                    })
-                                    .catch(error => console.log(error));
-
-                            }
-                            function createButtonBuilder(interactionembed) {
-
-                            }
-                        })
-                        .catch(error => console.log(error));
+                        }
+                    })
+                    .catch(error => console.log(error));
     
             }
-        }
 
     }
 }
