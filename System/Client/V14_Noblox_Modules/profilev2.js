@@ -1,6 +1,7 @@
 require('dotenv').config()
 const axios = require("axios");
 const { SlashCommandBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder } = require('discord.js');
+const wait = require('node:timers/promises').setTimeout
 //const test = require(`./V14_Noblox_Modules_Modules/ReplyCreator`)
 
 const profile_to_groups_button = new ButtonBuilder()
@@ -366,6 +367,14 @@ module.exports = {
                         profile_to_moderation_button,
                     )
                  interaction.editReply({ embeds: [interactionembed], components: [normal_profile_actionrowbuilder]})
+
+                 const profile_to_groups_filter = profile_to_groups_i => profile_to_groups_i.customId === 'profile_to_groups' && profile_to_groups_i.user.id === interaction.user.id
+                 const profile_to_groups_collector = interaction.channel.createMessageComponentCollector({ profile_to_groups_filter, time: 60000})
+                 profile_to_groups_collector.on('collect', async i => {
+                    wait(1000)
+                    interaction.editReply({ content: 'Groups Button was Clicked!' })
+                 })
+                 
             }
 
     }
