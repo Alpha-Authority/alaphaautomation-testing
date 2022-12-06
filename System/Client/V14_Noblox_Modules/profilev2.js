@@ -1,7 +1,7 @@
 require('dotenv').config()
 const axios = require("axios");
 const { SlashCommandBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder } = require('discord.js');
-const test = require(`./V14_Noblox_Modules_Modules/ReplyCreator`)
+//const test = require(`./V14_Noblox_Modules_Modules/ReplyCreator`)
 var gvwhitelist_var = []
 
 module.exports = {
@@ -265,22 +265,22 @@ module.exports = {
                                         //    .setThumbnail(thumbnail);
 
                                         // return embedinteraction.guild.iconURL({ format: "png", dynamic: true }
-                                        const beep = test([
-                                                {Type: 'embed', Data: newembed},
-                                                {Type: 'actionrowbuilder', Data: [
-                                                    {
-                                                        type: 2, 
-                                                        components: [
-                                                            {
-                                                                type: 1, 
-                                                                label: 'yes', 
-                                                                style: 1, 
-                                                                custom_id: '5'
-                                                            }
-                                                        ]
-                                                    }
-                                                ]}
-                                        ])
+                                        //const beep = test([
+                                        //        {Type: 'embed', Data: newembed},
+                                        //        {Type: 'actionrowbuilder', Data: [
+                                        //            {
+                                        //                type: 2, 
+                                        //                components: [
+                                        //                    {
+                                        //                        type: 1, 
+                                        //                        label: 'yes', 
+                                        //                        style: 1, 
+                                        //                        custom_id: '5'
+                                        //                    }
+                                        //                ]
+                                        //            }
+                                        //        ]}
+                                        //])
                                         //console.log(test([
                                         //    {Type: 'embed', Data: newembed},
                                         //    {Type: 'actionrowbuilder', Data: [
@@ -297,11 +297,11 @@ module.exports = {
                                         //        }
                                         //    ]}
                                         //]))
-                                        console.log(beep)
-                                        for (let ai = 0; ai < 5; ai++){ 
-                                            setTimeout(function timer() {
-                                                const thisString = []
-                                                if (ai == 1) {
+                                        //console.log(beep)
+                                        //for (let ai = 0; ai < 5; ai++){ 
+                                        //    setTimeout(function timer() {
+                                        //        const thisString = []
+                                        //        if (ai == 1) {
                                                     //for (thisValue in beep) {
                                                     //    if (thisValue[0]) {
                                                     //        thisString.push(thisValue[0])
@@ -312,13 +312,13 @@ module.exports = {
                                                     //    }
                                                     //    console.log(thisValue)
                                                     //}
-                                                }
-                                                if (ai == 4) {
-                                                    console.log(beep[[1]])
-                                                    return interaction.reply( {embeds: [beep.embed], components: [beep.components]} )
-                                                }
-                                            }, 2000)
-                                        }
+                                        //        }
+                                        //        if (ai == 4) {
+                                        //            console.log(beep[[1]])
+                                        //            return interaction.reply( {embeds: [beep.embed], components: [beep.components]} )
+                                        //        }
+                                        //    }, 2000)
+                                        //}
                                         //return interaction.reply( {embeds: [beep[0].embed], components: [beep[1].components]} )
                                     })
                                     .catch(error => console.log(error));
