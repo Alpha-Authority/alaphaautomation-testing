@@ -1,3 +1,24 @@
+const profile_to_groups_button = new ButtonBuilder()
+    .setCustomId('profile_to_groups')
+    .setLabel('Groups')
+    .setStyle(ButtonStyle.Secondary)
+const profile_to_achievements_button = new ButtonBuilder()
+    .setCustomId('profile_to_achievements')
+    .setLabel('Achievements')
+    .setStyle(ButtonStyle.Secondary)
+const profile_to_moderation_button = new ButtonBuilder()
+    .setCustomId('profile_to_moderation')
+    .setLabel('Moderations')
+    .setStyle(ButtonStyle.Secondary)
+
+const back_to_profile_button = new ActionRowBuilder()
+    .setCustomId('back_to_profile')
+    .setLabel('Back')
+    .setStyle(ButtonStyle.Primary)
+
+
+
+const profilebuttons_profile_groups = new ActionRowBuilder
 require('dotenv').config()
 const axios = require("axios");
 const { SlashCommandBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder } = require('discord.js');
@@ -223,6 +244,7 @@ module.exports = {
 
                                         // return embed
                                         return interaction.reply( { embeds: [embed] } )
+                                        createButtonBuilder(embed)
                                     })
                                     .catch(error => console.log(error));
                             }else{
@@ -320,8 +342,14 @@ module.exports = {
                                         //    }, 2000)
                                         //}
                                         //return interaction.reply( {embeds: [beep[0].embed], components: [beep[1].components]} )
+                                        return interaction.reply( { embeds: [newembed] } )
+                                        createButtonBuilder(newembed)
                                     })
                                     .catch(error => console.log(error));
+
+                            }
+                            function createButtonBuilder(interactionembed) {
+
                             }
                         })
                         .catch(error => console.log(error));
