@@ -243,8 +243,10 @@ module.exports = {
                                     // return embed
                                     return interaction.reply( { embeds: [newembed] } )
                                         .then(function () {
+                                            console.log('Reply edited.')
                                             createButtonBuilder(newembed)
                                         })
+                                        .catch(console.error);
                                     //interaction.deferReply()
                                     //createButtonBuilder(embed)
                                 })
@@ -346,8 +348,10 @@ module.exports = {
                                     //return interaction.reply( {embeds: [beep[0].embed], components: [beep[1].components]} )
                                     return interaction.reply( { embeds: [newembed] } )
                                         .then(function () {
+                                            console.log('Reply edited.')
                                             createButtonBuilder(newembed)
                                         })
+                                        .catch(console.error)
 
 
                                 })
@@ -367,33 +371,86 @@ module.exports = {
                         profile_to_moderation_button,
                     )
                  interaction.editReply({ embeds: [interactionembed], components: [normal_profile_actionrowbuilder]})
+                    .then(() => console.log(`Reply edited.`))
+                    .catch(console.error);
 
                 const profile_to_groups_filter = profile_to_groups_i => profile_to_groups_i.user.id === interaction.user.id
                 const profile_to_groups_collector = interaction.channel.createMessageComponentCollector({ profile_to_groups_filter, time: 20000})
-                profile_to_groups_collector.on('collect', async i => {
+                profile_to_groups_collector.on(`collect`, async i => {
+
                     if (i.customId === `profile_to_groups`) {
+                        await i.deferUpdate()
                         wait(1000)
-                        interaction.editReply({ content: 'Groups Button was Clicked!' })
+                        i.editReply({ content: `Groups Button was Clicked!` })
+                            .then(() => console.log(`Reply edited.`))
+                            .catch(console.error);
                         wait(1000)
                         const newinteractionembed = EmbedBuilder.from(interactionembed)
                             .setURL()
-                            .setDescription('WORK IN PROGRESS');
+                            .setDescription(`WORK IN PROGRESS`);
                         const group_profile_actionrowbuilder = new ActionRowBuilder()
                             .addComponents(
                                 back_to_profile_button
                             );
-                        interaction.editReply({ content: ``, embeds: [newinteractionembed], components: [group_profile_actionrowbuilder] })
+                        i.editReply({ content: ``, embeds: [newinteractionembed], components: [group_profile_actionrowbuilder] })
+                            .then(() => console.log(`Reply edited.`))
+                            .catch(console.error);
                     }
-                    if (i.customId === 'back_to_profile') {
+
+                    if (i.customId === `profile_to_achievements`) {
+                        await i.deferUpdate()
                         wait(1000)
-                        interaction.editReply({ content: 'Back Button was Clicked!' })
+                        i.editReply({ content: `Achievements Button was Clicked!` })
+                            .then(() => console.log(`Reply edited.`))
+                            .catch(console.error);
                         wait(1000)
-                        interaction.editReply({ content: ``, embeds: [interactionembed], components: [normal_profile_actionrowbuilder] })
+                        const newinteractionembed = EmbedBuilder.from(interactionembed)
+                            .setURL()
+                            .setDescription(`WORK IN PROGRESS`);
+                        const group_profile_actionrowbuilder = new ActionRowBuilder()
+                            .addComponents(
+                                back_to_profile_button
+                            );
+                        i.editReply({ content: ``, embeds: [newinteractionembed], components: [group_profile_actionrowbuilder] })
+                            .then(() => console.log(`Reply edited.`))
+                            .catch(console.error);
+                    }
+
+                    if (i.customId === `profile_to_moderation`) {
+                        await i.deferUpdate()
+                        wait(1000)
+                        i.editReply({ content: `Moderations Button was Clicked!` })
+                            .then(() => console.log(`Reply edited.`))
+                            .catch(console.error);
+                        wait(1000)
+                        const newinteractionembed = EmbedBuilder.from(interactionembed)
+                            .setURL()
+                            .setDescription(`WORK IN PROGRESS`);
+                        const group_profile_actionrowbuilder = new ActionRowBuilder()
+                            .addComponents(
+                                back_to_profile_button
+                            );
+                        i.editReply({ content: ``, embeds: [newinteractionembed], components: [group_profile_actionrowbuilder] })
+                            .then(() => console.log(`Reply edited.`))
+                            .catch(console.error);
+                    }
+
+                    if (i.customId === `back_to_profile`) {
+                        await i.deferUpdate()
+                        wait(1000)
+                        i.editReply({ content: `Back Button was Clicked!` })
+                            .then(() => console.log(`Reply edited.`))
+                            .catch(console.error);
+
+                        wait(1000)
+                        i.editReply({ content: ``, embeds: [interactionembed], components: [normal_profile_actionrowbuilder] })
+                            .then(() => console.log(`Reply edited.`))
+                            .catch(console.error);
                     }
                 })
-                profile_to_groups_collector.on('end', collected => {
+                profile_to_groups_collector.on(`end`, collected => {
                     console.log(`Collected ${collected.size} items.`)
-                    return interaction.editReply({ content: `Sender pressed these embeds buttons ${collected.size} times!` })
+                    return interaction.editReply({ content: `Sender pressed these embeds buttons ${collected.size} times!`, components: [] })
                 })
                  //const back_to_profile_filter = back_to_profile_i => back_to_profile_i.customId === 'back_to_profile' && back_to_profile_i.user.id === interaction.user.id
                  //const back_to_profile_collector = interaction.channel.createMessageComponentCollector({ back_to_profile_filter, time: 60000 })
