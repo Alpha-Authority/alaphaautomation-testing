@@ -23,11 +23,10 @@ const clientSystem = './System/Client';
 
 // // //
 
-const token = process.env.TESTING_TOKEN;
+const token = process.env.TOKEN;
 const prefix = process.env.PREFIX;
 
-const rbxcookie = process.env.LAPTOP_TESTING_RBXCOOKIE
-
+const rbxcookie = process.env.RBXCOOKIE
 //
 
 
