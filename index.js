@@ -12,8 +12,8 @@
 // // //
 
 const fs = require('fs');
-//const discord = require('discord.js');
-const { Client, GatewayIntentBits } = require('discord.js');
+const discord = require('discord.js');
+//const { Client, GatewayIntentBits } = require('discord.js');
 const noblox = require('noblox.js')
 require('dotenv').config()
 
@@ -23,23 +23,23 @@ const clientSystem = './System/Client';
 
 // // //
 
-const token = process.env.TOKEN;
+const token = process.env.TESTING_TOKEN;
 const prefix = process.env.PREFIX;
 
-const rbxcookie = process.env.RBXCOOKIE
+const rbxcookie = process.env.LAPTOP_TESTING_RBXCOOKIE
 
 //
 
 
-//const client = new discord.Client({ intents: ["GUILDS", "GUILD_MESSAGES"] });
-const client = new Client({
-	intents: [
-		GatewayIntentBits.Guilds,
-		GatewayIntentBits.GuildMessages,
-		GatewayIntentBits.MessageContent,
-		GatewayIntentBits.GuildMembers,
-	],
-});
+const client = new discord.Client({ intents: ["GUILDS", "GUILD_MESSAGES"] });
+//const client = new Client({
+//	intents: [
+//		GatewayIntentBits.Guilds,
+//		GatewayIntentBits.GuildMessages,
+//		GatewayIntentBits.MessageContent,
+//		GatewayIntentBits.GuildMembers,
+//	],
+//});
 //
 
 

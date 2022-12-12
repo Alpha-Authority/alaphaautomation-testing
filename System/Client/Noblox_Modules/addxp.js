@@ -118,7 +118,7 @@ module.exports = {
                         
     
     
-                        axios.get(`${process.env.SA_DATABASEURL}/points/users/${rblx_id}.json`)
+                        axios.get(`${process.env.SA_DATABASEURL}/points/groups/Alpha Authority/users/${rblx_id}.json`)
                             .then(function (response) {
                                 var current_points;
                                 console.log(response.data)
@@ -138,7 +138,7 @@ module.exports = {
                             var new_total_points = current_points + addPoints;
                         
                             if (flag){//&& blacklisted != true){
-                                db.ref(`points/users/${rblx_id}`).set({
+                                db.ref(`points/groups/Alpha Authority/users/${rblx_id}`).set({
                                   xp: Number(new_total_points)
                                 });
                                 getThumbnail(true, rblx_username, rblx_id)
@@ -150,7 +150,7 @@ module.exports = {
                                 //message.channel.send(doneEmbed)
                     
                             }else{
-                                db.ref(`points/users/${rblx_id}`).set({
+                                db.ref(`points/groups/Alpha Authority/users/${rblx_id}`).set({
                                   xp: Number(new_total_points)
                                 });
                                 getThumbnail(false, rblx_username, rblx_id)
