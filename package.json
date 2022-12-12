@@ -19,7 +19,6 @@
     "firebase-admin": "^10.3.0",
     "noblox.js": "^4.13.1",
     "nvm": "0.0.4",
-    "path": "^0.12.7",
     "server.js": "^1.0.0"
   }
 }
