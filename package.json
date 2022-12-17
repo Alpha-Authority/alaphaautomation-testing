@@ -13,6 +13,7 @@
     "@discordjs/rest": "^1.0.1",
     "axios": "^0.27.2",
     "bloxy": "^5.0.34",
+    "child_process": "^1.0.2",
     "discord.js": "^14.7.1",
     "dotenv": "^16.0.2",
     "express": "^4.17.1",
@@ -20,6 +21,7 @@
     "noblox.js": "^4.13.1",
     "nvm": "0.0.4",
     "path": "^0.12.7",
-    "server.js": "^1.0.0"
+    "server.js": "^1.0.0",
+    "shelljs": "^0.8.5"
   }
 }
