@@ -18,7 +18,6 @@ const noblox = require('noblox.js');
 // Environment Variables
 
 const token = process.env.TOKEN;
-const prefix = process.env.PREFIX;
 const rbxcookie = process.env.RBXCOOKIE;
 
 
