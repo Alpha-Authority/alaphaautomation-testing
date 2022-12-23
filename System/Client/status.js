@@ -3,8 +3,7 @@ const { ActivityType } = require('discord.js'); // Discord.js V14
 function status(client) {
     const prefix = process.env.PREFIX
     client.once('ready', () => {
-        console.log("I'm in");
-        console.log(client.user.username);
+        console.log(new Date(), `| status.js | I'm in! Username: ${client.user.username}. User ID: ${client.user.id}`);
         //client.user.setActivity('\"' + prefix + '\"', {type: "LISTENING"}); 
         const activities = [
 			`${client.guilds.cache.size} servers!`,

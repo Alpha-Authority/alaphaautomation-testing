@@ -165,16 +165,16 @@ function commands(client, noblox, token, cl) {
     
     (async () => {
         try {
-            console.log(`Started refreshing ${commands.length} application (/) commands.`);
+            console.log(new Date(), `| commands.js | Started refreshing ${commands.length} application (/) commands.`);
 
             const data = await rest.put(
                 Routes.applicationCommands(process.env.APPLICATION_ID),
                 { body: commands },
             );
 
-            console.log(`Successfully reloaded ${data.length} application (/) commands.`);
+            console.log(new Date(), `| commands.js | Successfully reloaded ${data.length} application (/) commands.`);
         } catch (error) {
-            console.error(error);
+            console.error(new Date(), `| commands.js |`, error);
         }
     })();
 
