@@ -1,37 +1,31 @@
-// By ScriptIntelligence
+/**
+ * @name alaphaautomation-testing
+ * @description Javascript backend program for the operation of two Discord bots, named Alapha Automata and Alphaseer.
+ * @version v2
+ * @author Scrippy
+ * @source https://github.com/Scrippy/alaphaautomation-testing
+ */
 
-// Structure Setup
+console.log(new Date(), `\n---------\nStarting!\n---------`);
 
-// node_modules
-// modules
-// settings
-// events
-// startup
-// functions
+// Modules
 
-// // //
-
+require('dotenv').config();
 const fs = require('fs');
-//const discord = require('discord.js');
 const { Client, GatewayIntentBits } = require('discord.js');
-const noblox = require('noblox.js')
-require('dotenv').config()
+const noblox = require('noblox.js');
 
-// // //
 
-const clientSystem = './System/Client';
-
-// // //
+// Environment Variables
 
 const token = process.env.TOKEN;
-const prefix = process.env.PREFIX;
-
-const rbxcookie = process.env.RBXCOOKIE
-
-//
+const rbxcookie = process.env.RBXCOOKIE;
 
 
-//const client = new discord.Client({ intents: ["GUILDS", "GUILD_MESSAGES"] });
+// Setup
+
+// -- Discord
+
 const client = new Client({
 	intents: [
 		GatewayIntentBits.Guilds,
@@ -40,36 +34,29 @@ const client = new Client({
 		GatewayIntentBits.GuildMembers,
 	],
 });
-//
+
+client.login(token)
+	.then(console.log(new Date(), `| index.js | Logged into Discord.js Client.`));
 
 
-client.login(token);
+// -- Noblox
 
-async function startApp () {
-    // You MUST call setCookie() before using any authenticated methods [marked by 🔐]
-    // Replace the parameter in setCookie() with your .ROBLOSECURITY cookie.
-    const currentUser = await noblox.setCookie(`${rbxcookie}`) 
-    console.log(`Logged in as ${currentUser.UserName} [${currentUser.UserID}]`)
+async function startNoblox(){
+	const currentUser = await noblox.setCookie(`${rbxcookie}`);
+	console.log(new Date(), `| index.js | Logged into Noblox as ${currentUser.UserName} [${currentUser.UserID}]`);
+};
 
-    // Do everything else, calling functions and the like.
-}
+startNoblox();
 
-startApp()
 
-//
+// Startup
 
-const clientFiles = fs.readdirSync(clientSystem).filter(file => file.endsWith('.js'));
+// -- FS
+
+const clientFiles = fs.readdirSync(`./System/Client`).filter(file => file.endsWith(`.js`));
 
 for (const file of clientFiles) {
-    const clientFile = require(clientSystem + '/' + file)
-    clientFile(client, noblox);
+    const clientFile = require(`./System/Client/${file}`);
+    clientFile(client, noblox, token);
+	console.log(new Date(), `| index.js | Executed ${file} in directory ./System/Client/`);
 }
-
-//const clientFilesMjs = fs.readdirSync(clientSystem + '/Mjs').filter(file => file.endsWith('.mjs'));
-
-//for (const file2 of clientFilesMjs) {
-//    const clientFile2 = require(clientSystem + '/Mjs/' + file2)
-    //clientFile2(client);
-//}
-
-// node -e "console.log(require('dotenv').config())"

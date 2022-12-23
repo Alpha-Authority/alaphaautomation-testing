@@ -12,7 +12,7 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 function keepAlive() { 
-    app.listen(3000, ()=>{console.log("Server is Ready!")});
+    app.listen(3000, ()=>{console.log(new Date(), `| server.js | Server is Ready!`)});
 }
 
 module.exports = keepAlive;
