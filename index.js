@@ -6,6 +6,7 @@
  * @source https://github.com/Scrippy/alaphaautomation-testing
  */
 
+console.log(new Date(), `\n---------\nStarting!\n---------`);
 
 // Modules
 
@@ -34,13 +35,15 @@ const client = new Client({
 	],
 });
 
-client.login(token);
+client.login(token)
+	.then(console.log(new Date(), `| index.js | Logged into Discord.js Client.`));
+
 
 // -- Noblox
 
 async function startNoblox(){
-    const currentUser = await noblox.setCookie(`${rbxcookie}`) 
-    console.log(`Logged in as ${currentUser.UserName} [${currentUser.UserID}]`);
+	const currentUser = await noblox.setCookie(`${rbxcookie}`);
+	console.log(new Date(), `| index.js | Logged into Noblox as ${currentUser.UserName} [${currentUser.UserID}]`);
 };
 
 startNoblox();
@@ -55,4 +58,5 @@ const clientFiles = fs.readdirSync(`./System/Client`).filter(file => file.endsWi
 for (const file of clientFiles) {
     const clientFile = require(`./System/Client/${file}`);
     clientFile(client, noblox, token);
+	console.log(new Date(), `| index.js | Executed ${file} in directory ./System/Client/`);
 }
