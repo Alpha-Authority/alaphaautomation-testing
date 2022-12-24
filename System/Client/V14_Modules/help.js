@@ -8,7 +8,7 @@ module.exports = {
         const data = [];
         const { commands } = interaction.client.commands;
         data.push('Here\'s a list of all my commands:');
-        data.push('\`\`' + commands.map(command => command.name).join('``, ``') + '\`\`');
+        data.push('\`\`' + commands.map(command => command.commandName).join('``, ``') + '\`\`');
         //data.push(`\nYou can send \`${prefix}help [command name]\` to get info on a specific command!`);
 
         //return message.channel.send(data, { split: true })
