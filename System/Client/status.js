@@ -13,7 +13,7 @@ function status(client) {
 		let i = 0;
 		//setInterval(() => client.user.setActivity(process.env.PREFIX + `help | ${activities[i++ % activities.length]}`, { type: 'LISTENING' }), 15000); -- Discord.js V12
         client.user.setPresence({
-            activities: [{ name: `${process.env.PREFIX} help | ${activities[i++ % activities.length]}`, type: ActivityType.Listening }],
+            activities: [{ name: `/help | ${activities[i++ % activities.length]}`, type: ActivityType.Listening }],
             status: 'online',
           }, 15000); // -- Discord.js V14
     });
