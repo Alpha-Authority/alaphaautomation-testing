@@ -12,6 +12,9 @@ module.exports = {
             option.setName('username')
                 .setDescription(`View a user's group profile.`)
                 .setRequired(false)),
+        subdata: {
+            cooldown: 3
+        },
 	async execute(interaction, noblox) {
         var db = admin.database();
         const userdata = []

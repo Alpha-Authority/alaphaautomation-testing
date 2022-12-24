@@ -4,6 +4,9 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('ping')
         .setDescription('Shows latency between the server and when the message was sent.'),
+    subdata: {
+        cooldown: 3
+    },
 	async execute(interaction) {
 		const time = new Date()
         const embedAA = {

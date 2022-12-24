@@ -4,6 +4,9 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('commands')
         .setDescription(`Command information.`),
+    subdata: {
+        cooldown: 3
+    },
 	async execute(interaction) {
         const data = [];
         const commands = interaction.client.commands;

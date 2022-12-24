@@ -10,6 +10,10 @@ module.exports = {
             option.setName('username')
                 .setDescription(`View a user's group profile.`)
                 .setRequired(false)),
+        subdata: {
+            usage: '<username>',
+            cooldown: 3
+        },
 	async execute(interaction, noblox) {
         console.log(`Running ViewXP. Run by ${interaction.user.tag} (${interaction.user.id}).`)
         const  interactionStringArg = interaction.options.getString('username')

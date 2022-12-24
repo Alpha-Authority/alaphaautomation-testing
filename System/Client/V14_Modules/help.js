@@ -4,6 +4,9 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('help')
         .setDescription('Gives information about the bot.'),
+    subdata: {
+        cooldown: 3
+    },
 	async execute(interaction) {
         const embedAA = {
                 "title": "Alapha Here! >:3",

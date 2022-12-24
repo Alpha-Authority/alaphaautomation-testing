@@ -4,6 +4,9 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('youtubes')
         .setDescription('Gives links to the Alaphan youtubes.'),
+    subdata: {
+        cooldown: 3
+    },
 	async execute(interaction) {
 		const time = new Date()
         const embedAA = {

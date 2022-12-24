@@ -4,6 +4,9 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName('uptime')
         .setDescription(`Shows the bot's uptime.`),
+    subdata: {
+        cooldown: 3
+    },
 	async execute(interaction) {
         uptime = interaction.client.uptime
         days = Math.floor(uptime / 86400000)
