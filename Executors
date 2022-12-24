@@ -1,0 +1,5 @@
+# Alapha Automata
+nodemon --quiet index > ./Logs/AAT/Log/console-log-$((get-date).ToUniversalTime().ToString("yyyy-MM-dd-HH-mm-ss")).txt 2>> ./Logs/AAT/Error/console-error-$((get-date).ToUniversalTime().ToString("yyyy-MM-dd-HH-mm-ss")).txt
+
+# Alaphaseer
+nodemon --quiet index > ./Logs/AS/Log/console-log-$((get-date).ToUniversalTime().ToString("yyyy-MM-dd-HH-mm-ss")).txt 2>> ./Logs/AS/Error/console-error-$((get-date).ToUniversalTime().ToString("yyyy-MM-dd-HH-mm-ss")).txt
