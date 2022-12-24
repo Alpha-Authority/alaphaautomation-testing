@@ -1,4 +1,4 @@
 :exec
 git pull
-TIMEOUT 20 /nobreak
+TIMEOUT 10 /nobreak
 GOTO exec
