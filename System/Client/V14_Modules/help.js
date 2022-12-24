@@ -30,6 +30,6 @@ module.exports = {
             "description": y,
             timestamp: new Date()
         }
-        return interaction.reply({ embeds: [embedAA] })
+        await interaction.reply({ embeds: [ embedAA ] });
         }
 }
