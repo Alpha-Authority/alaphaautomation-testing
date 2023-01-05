@@ -30,11 +30,11 @@ module.exports = {
                     var childKey = childSnapshot.key;
                     var childData = childSnapshot.val();
                     console.log(childKey, childData)
-                    //const rankId = noblox.getRankInGroup(790907, childKey)
-                    //if (rankId !== 0){
-                    
-                    //}
-                    // ...
+                    const rankId = noblox.getRankInGroup(790907, childKey)
+                    if (rankId == (2 || 91 || 92 || 93 || 94 || 95 || 96 || 97)) {
+                        console.log(childKey, rankId)
+                    }
+                // ...
                 });
             });
         }
