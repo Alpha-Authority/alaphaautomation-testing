@@ -15,7 +15,7 @@ module.exports = {
                 .setDescription(`View a user's group profile. V2`)
                 .setRequired(false)),
 	async execute(interaction, noblox) {
-        if (interaction.author.id == "170639211182030850" || interaction.author.id == "463516784578789376"){
+        if (interaction.user.id == "170639211182030850" || interaction.user.id == "463516784578789376"){
             isAuthorized()
         }else{
     		return interaction.reply({ content: `Sorry ${message.author}, but only the owners can run that command!` }).then(message => message.delete({timeout: 5000, reason: "delete"}));
