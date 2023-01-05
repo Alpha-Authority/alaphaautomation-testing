@@ -27,14 +27,18 @@ module.exports = {
             var ref = db.ref('points').child('groups').child('Alpha Authority').child('users')
             ref.once('value', (snapshot) => {
                 snapshot.forEach((childSnapshot) => {
-                    var childKey = childSnapshot.key;
-                    var childData = childSnapshot.val();
-                    console.log(childKey, childData)
-                    const rankId = noblox.getRankInGroup(790907, childKey)
-                    if (rankId == (2 || 91 || 92 || 93 || 94 || 95 || 96 || 97)) {
-                        console.log(childKey, rankId)
-                    }
-                // ...
+                    setTimeout(function timer() {
+                        var childKey = childSnapshot.key;
+                        var childData = childSnapshot.val();
+                        console.log(childKey, childData)
+                        const rankId = noblox.getRankInGroup(790907, Number(childKey))
+                        console.log(rankId)
+                        if (rankId == (2 || 91 || 92 || 93 || 94 || 95 || 96 || 97)) {
+                            console.log(childKey, rankId)
+                        }
+                    // ...
+
+                    }, 500);
                 });
             });
         }
