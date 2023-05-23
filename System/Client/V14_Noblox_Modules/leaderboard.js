@@ -7,10 +7,10 @@ const admin = require("firebase-admin");
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('leaderboard')
-        .setDescription(`View a the point leaderboard.`)
+        .setDescription(`View the point leaderboard.`)
         .addStringOption(option =>
             option.setName('username')
-                .setDescription(`View a user's group profile.`)
+                .setDescription(`Select a user to view on the point leaderboard.`)
                 .setRequired(false)),
         subdata: {
             cooldown: 3
@@ -22,12 +22,12 @@ module.exports = {
         thisObjectTable.push(`Leaderboard`)
         let ig = 0
         var ref = db.ref('points').child('groups').child('Alpha Authority').child('users')
-        ref.orderByChild('xp').limitToFirst(10).on('value', (querySnapshot) => {
+        ref.orderByChild('xp').limitToLast(10).on('value', (querySnapshot) => {
 
             querySnapshot.forEach((thisObject) => {
                 ig = ig + 1
                 console.log(thisObject.key, thisObject.val())
-                thisObjectTable.push(thisObject.key, ` - `, `${thisObject.val().xp}`)
+                thisObjectTable.push(`${thisObject.key} - ${thisObject.val().xp}`)
                 if (ig == 10){
                     LogthisObjectTable(thisObjectTable)
                 }
