@@ -10,7 +10,10 @@ console.log(new Date(), `\n---------\nStarting!\n---------`);
 
 // Modules
 
-require("dotenv").config();
+require("dotenv").config({
+  path: 'config/.env'
+});
+
 const fs = require("fs");
 const { Client, GatewayIntentBits } = require("discord.js");
 const noblox = require("noblox.js");
