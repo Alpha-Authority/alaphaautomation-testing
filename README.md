@@ -9,6 +9,7 @@ The official bot of Alpha Authority, dedicated to providing security, entertainm
 </div>
 
 <div align="center">
+<a href="#about">About</a> •
 <a href="#prerequisites">Prerequisites</a> •
 <a href="#getting-started">Getting started</a>
 </div>
