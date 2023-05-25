@@ -5,6 +5,7 @@ The official bot of Alpha Authority, dedicated to providing security, entertainm
 <br>
 <img src="https://img.shields.io/github/last-commit/Scrippy/alaphaautomation-testing">
 <img src="https://img.shields.io/github/languages/top/Scrippy/alaphaautomation-testing">
+<img src="https://img.shields.io/github/license/Alpha-Authority/alaphaautomation-testing">
 <br>
 </div>
 
