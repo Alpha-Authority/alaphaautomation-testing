@@ -1,6 +1,6 @@
 require("dotenv").config();
 function messages(client) {
-  client.on("message", (message) => {
+  client.on("messageCreate", (message) => {
     if (message.author.bot) return;
     if (message.content.toLowerCase() == "hi") {
       //message.channel.send('hello there <@' + message.author.id + '>')
@@ -9,7 +9,7 @@ function messages(client) {
       //message.channel.send('(:')
     }
     if (message.content.toLowerCase().indexOf("birthday") != -1) {
-      //message.channel.send('Happy Birthday!!!')
+      message.channel.send("Happy Birthday!!!");
     }
     if (message.content.toLowerCase().indexOf(process.env.M_HR) != -1) {
       message.reply({
