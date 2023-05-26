@@ -12,15 +12,19 @@ function messages(client) {
       message.channel.send("Happy Birthday!!!");
     }
     if (message.content.toLowerCase().indexOf(process.env.M_HR) != -1) {
-			setTimeout(() => {
-				message.reply({
-					files: [
-						"https://cdn.discordapp.com/attachments/591048589908901928/996103534107967568/AAMemesOperationMetaburn.gif",
-					],
-			}, 1000);
-
+      setTimeout(() => {
+        message.reply(
+          {
+            files: [
+              "https://cdn.discordapp.com/attachments/591048589908901928/996103534107967568/AAMemesOperationMetaburn.gif",
+            ],
+          },
+          1000
+        );
       });
-      message.delete();
+      setTimeout(() => {
+        message.delete();
+      }, 2000);
     }
   });
 }
