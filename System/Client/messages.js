@@ -14,20 +14,13 @@ function messages(client) {
     if (message.content.toLowerCase().includes("birthday")) {
       message.channel.send("Happy Birthday!!!");
     }
-    if (message.content.toLowerCase().indexOf(process.env.M_HR) != -1) {
-      setTimeout(() => {
-        message.reply(
-          {
-            files: [
-              "https://cdn.discordapp.com/attachments/591048589908901928/996103534107967568/AAMemesOperationMetaburn.gif",
-            ],
-          },
-          1000
-        );
+    if (message.content.toLowerCase().includes(process.env.M_HR)) {
+      message.channel.send({
+        files: [
+          "https://cdn.discordapp.com/attachments/591048589908901928/996103534107967568/AAMemesOperationMetaburn.gif",
+        ],
       });
-      setTimeout(() => {
-        message.delete();
-      }, 2000);
+      message.delete();
     }
   });
 }
