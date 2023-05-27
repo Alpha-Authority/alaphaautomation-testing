@@ -3,17 +3,12 @@ require("dotenv").config();
 
 function messages(client) {
   client.on("messageCreate", (message) => {
-    const msg = message.content.toLowerCase();
+		const msg = message.content.toLowerCase();
+    
+		if (message.author.bot) return;
 
-    if (message.author.bot) return;
-    if (msg == "hi") {
-      //message.channel.send('hello there <@' + message.author.id + '>')
-    }
     if (msg.includes("girl")) {
       message.channel.send("Script is a girl!");
-    }
-    if (msg == ":)") {
-      //message.channel.send('(:')
     }
     if (msg.includes("birthday")) {
       message.channel.send("Happy Birthday!!!");
