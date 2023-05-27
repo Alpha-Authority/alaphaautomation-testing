@@ -6,8 +6,6 @@ const { REST } = require("@discordjs/rest"); // -- Discord V14
 const { Routes } = require("discord.js"); // -- Discord V14
 const admin = require("firebase-admin");
 
-//
-
 const SA_PRIVATE_KEY = process.env.SA_PRIVATE_KEY.split("\\n").join("\n");
 //console.log(`${SA_PRIVATE_KEY}`)
 
