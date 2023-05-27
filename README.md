@@ -33,7 +33,7 @@ Feel free to look through this, we've done a lot to reset and remove old tokens 
 ### Getting started:
 
 ```bash 
-git clone -b dev https://github.com/brplcc/alaphaautomation-testing.git
+git clone https://github.com/brplcc/alaphaautomation-testing.git
 cd alphaautomation-testing
 ```
 You will need to have a .env file with the required information. Use the example.env file in the config directory for reference.
