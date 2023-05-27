@@ -12,7 +12,8 @@ The official bot of Alpha Authority, dedicated to providing security, entertainm
 <div align="center">
 <a href="#about">About</a> •
 <a href="#prerequisites">Prerequisites</a> •
-<a href="#getting-started">Getting started</a>
+<a href="#getting-started">Getting started</a> •
+<a href="#faq">FAQ</a>
 </div>
 
 ---------------
@@ -37,3 +38,10 @@ git clone https://github.com/brplcc/alaphaautomation-testing.git
 cd alphaautomation-testing
 ```
 You will need to have a .env file with the required information. Use the example.env file in the config directory for reference.
+
+---------------
+
+### FAQ:
+
+ - Why is node_modules included in the repository instead of package.json file?
+   - The code relies on some legacy libraries, when we tried using NPM, it broke. So they were just added to the repository for ease of use.
