@@ -43,5 +43,5 @@ You will need to have a .env file with the required information. Use the example
 
 ### FAQ:
 
- - Why is node_modules included in the repository instead of package.json file?
+ - Why is "node_modules" included in the repository instead of package.json file?
    - The code relies on some legacy libraries, when we tried using NPM, it broke. So they were just added to the repository for ease of use.
