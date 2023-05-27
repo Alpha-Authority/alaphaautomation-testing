@@ -1,4 +1,6 @@
+const banned = require('../../config/banned.json');
 require("dotenv").config();
+
 function messages(client) {
   client.on("messageCreate", (message) => {
     if (message.author.bot) return;
@@ -14,7 +16,7 @@ function messages(client) {
     if (message.content.toLowerCase().includes("birthday")) {
       message.channel.send("Happy Birthday!!!");
     }
-    if (message.content.toLowerCase().includes(process.env.M_HR)) {
+    if (message.content.toLowerCase().split(' ').every(word => banned.includes(word))) {
       message.channel.send({
         files: [
           "https://cdn.discordapp.com/attachments/591048589908901928/996103534107967568/AAMemesOperationMetaburn.gif",
@@ -26,3 +28,4 @@ function messages(client) {
 }
 
 module.exports = messages;
+
