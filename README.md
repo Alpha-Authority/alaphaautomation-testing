@@ -36,6 +36,7 @@ Feel free to look through this, we've done a lot to reset and remove old tokens 
 ```bash 
 git clone https://github.com/brplcc/alaphaautomation-testing.git
 cd alphaautomation-testing
+node index.js
 ```
 You will need to have a .env file with the required information. Use the example.env file in the config directory for reference.
 
