@@ -1,8 +1,8 @@
 const banned = require("../../config/banned.json");
 
-function messages(client) {
-  client.on("messageCreate", async (message) => {
-    const msgContent = message.content.toLowerCase();
+async function messages(client) {
+  await client.on("messageCreate", async (message) => {
+    const msgContent = await message.content.toLowerCase();
 
     if (await message.author.bot) return;
 
