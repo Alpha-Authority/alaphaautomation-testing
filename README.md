@@ -1,4 +1,5 @@
 <div align="center">
+<img src="https://cdn.discordapp.com/avatars/647124402475106306/18eca4daf154d1e78d32d9828fe1bd44.png?size=2048" width="200">
 <h2>Alapha Automations - Testing (AAT)</h2>
 The official bot of Alpha Authority, dedicated to providing security, entertainment, and utility services.
 <br>
